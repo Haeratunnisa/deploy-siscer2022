@@ -52,7 +52,7 @@ x = df.drop(['stroke', 'ever_married', 'work_type', 'Residence_type', 'smoking_s
 y = df['stroke']
 
 # train test split
-X_train, X_test, y_train, y_test = train_test_split(X.values, y.values, test_size=0.2, random_state=69)
+X_train, X_test, y_train, y_test = train_test_split(x.values, y.values, test_size=0.2, random_state=69)
 
 from sklearn.preprocessing import StandardScaler 
 
