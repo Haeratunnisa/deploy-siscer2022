@@ -8,7 +8,7 @@ st.write("""
     # Prediksi Stroke
 """)
 
-st.image('./image.jpg')
+st.image('./1A.jpg')
 
 st.write( """
     ## Keterangan Data Yang Diinputkan
