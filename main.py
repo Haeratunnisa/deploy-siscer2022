@@ -47,7 +47,7 @@ cols = ['gender']
 for col in cols:
   df[col] = en.fit_transform(df[col])
 
-# handling imbalanced data
+# menentukan parameter x dan y
 x = df.drop(['stroke', 'ever_married', 'work_type', 'Residence_type', 'smoking_status'], axis = 'columns')
 y = df['stroke']
 
@@ -66,17 +66,17 @@ m = DecisionTreeClassifier()
 m.fit(X_train_ss_scaled, y_train)
 y_pred_dt = m.predict(X_test)
 
-st.write("Dengan Menggunakan Deciision Tree Nilai Akurasinya Adalah:")
+st.write("Dengan Menggunakan Decision Tree Nilai Akurasinya Adalah:")
 st.write(accuracy_score(y_test, y_pred_dt))
 
 st.write("# Masukkan data")
 
 
 form = st.form(key='my-form')
-inputGender = form.number_input("Jenis kelamin: ", 0)
+inputGender = form.number_input("Jenis kelamin (1 = male, 0 = female): ", 0)
 inputAge = form.number_input("Umur: ", 0)
 inputHyper = form.number_input("Apakah mempunyai hipertensi? (1 = ya, 0 = tidak): ", 0)
-inputHD = form.number_input("Apakah mempunyai penyakit jantung (1 = ya, 0 = tidak): ", 0)
+inputHD = form.number_input("Apakah mempunyai penyakit jantung? (1 = ya, 0 = tidak): ", 0)
 inputGlucose = form.number_input("Rata-rata kadar glukosa: ", 0)
 inputBMI = form.number_input("BMI: ", 0)
 submit = form.form_submit_button('Submit')
@@ -90,10 +90,9 @@ st.write('Tekan Submit Untuk Melihat Hasil Prediksi')
 
 if submit:
     prediction = m.predict(scaledData)
-    if prediction > 1 :
-        result = 1
-    elif prediction < 0 :
-        result = 0
-    else :
-        result = prediction[0]
-    st.write(result*100, "Percent")
+    if prediction == 1 :
+        result = 'Stroke'
+    else:
+        result = 'Sehat'
+    st.write(result)
+    
